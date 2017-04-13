@@ -1,0 +1,91 @@
+<style>
+
+#development_status {
+	z-index: 9999;
+}
+
+#development_status a{
+	background:#c11;
+	color:#fff;
+	text-decoration:none;
+	font-family:arial,sans-serif;
+	text-align:center;
+	font-weight:bold;
+	padding:5px 40px;
+	font-size:1.35rem;
+	line-height:2rem;
+	position:relative;
+	transition:0.5s;
+	}
+	#development_status a:hover{
+		background:#ED7600;color:#fff;
+	}
+	#development_status a::before,#development_status a::after{
+		content:"";
+		width:100%;
+		display:block;
+		position:absolute;
+		top:1px;
+		left:0;
+		height:1px;
+		background:#fff;
+	}
+	#development_status a::after{
+		bottom:1px;
+		top:auto;
+	}
+
+@media screen and (max-width:800px){
+
+	#development_status{
+		position:fixed;
+		display:block;
+		top:0;
+		width:100%;
+		overflow:hidden;
+        height:200px;
+        z-index:9999;
+	}
+	#development_status a{
+		width:200px;
+		position:absolute;
+		top:30px;
+		right:-60px;
+		transform:rotate(45deg);
+		-webkit-transform:rotate(45deg);
+		-ms-transform:rotate(45deg);
+		-moz-transform:rotate(45deg);
+		-o-transform:rotate(45deg);
+		box-shadow:4px 4px 10px rgba(0,0,0,0.8);
+			}
+		}
+	
+
+}
+
+	#development_status{
+		position:fixed;
+		display:block;
+		top:0;
+		right:0;
+		width:200px;
+		overflow:hidden;
+        height:200px;
+        z-index:9999;
+	}
+	
+	#development_status a{
+		width:200px;
+		position:absolute;
+		top:25px;
+		right:-60px;
+		transform:rotate(45deg);
+		-webkit-transform:rotate(45deg);
+		-ms-transform:rotate(45deg);
+		-moz-transform:rotate(45deg);
+		-o-transform:rotate(45deg);
+		box-shadow:4px 4px 10px rgba(0,0,0,0.8);
+			}
+		</style>
+
+		<span id="development_status"><a href="">Under development</a></span>

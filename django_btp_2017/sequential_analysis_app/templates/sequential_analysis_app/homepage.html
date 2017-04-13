@@ -1,0 +1,106 @@
+{% extends "sequential_analysis_app/master_template.html" %}
+{% block content %}
+<div class="container">
+{% include 'sequential_analysis_app/includes/page_header.html' %}
+<p>Hey! Welcome to the website! Well, I wasn't expecting guests. Um, my name is Jishnu. If you find any anomaly in this webapp kindly report it to <a href="mailto:jishnu.jayakumar182@gmail.com">jishnu.jayakumar182@gmail.com</a>.</p>
+<form action="uploads/" method='post' enctype="multipart/form-data">
+{% csrf_token %}
+  <div class="form-group">
+    <label for="exampleInputEmail1">Budget</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Budget" name="budget" value="5000">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputFile">File input</label>
+    <input type="file" id="exampleInputFile" name="input_file">
+     {% if uploaded_file_url %}
+    <p class="help-block">File uploaded at: {{ uploaded_file_url }}</p>
+    <!--p class="help-block">Result : {{ result }}</p-->
+    <p class="help-block">Uploaded file deleted : {{ file_deleted }}</p>
+    <h2 style="color:green;">Output</h2>
+    <div class="table-responsive col-md-3">
+    <table class="table">
+  <thead class="thead-inverse">
+    <tr>
+      <th>Cell_Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+
+    {% for cell_type in result.cell_type %}
+
+      <tr><th scope="row">{{cell_type}}</th></tr>    
+ 
+    {% endfor %}
+
+</tbody>
+
+</table>
+</div>
+<div class="table-responsive col-md-3">
+    <table class="table">
+  <thead class="thead-inverse">
+    <tr>
+      <th>n_io</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+
+    {% for n_io in result.n_io_list %}
+
+      <tr><th scope="row">{{n_io}}</th></tr>    
+ 
+    {% endfor %}
+
+</tbody>
+
+</table>
+</div>
+<div class="table-responsive col-md-3">
+    <table class="table">
+  <thead class="thead-inverse">
+    <tr>
+       <th>Mean(N_io)</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+
+    {% for mean_N_io in result.mean_N_io_list %}
+
+      <tr><th scope="row">{{mean_N_io}}</th></tr>    
+ 
+    {% endfor %}
+
+</tbody>
+
+</table>
+</div>
+<div class="table-responsive col-md-3">
+    <table class="table">
+  <thead class="thead-inverse">
+    <tr>
+      <th>SD(N_io) (iteratons={{result.num_iterations}})</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+
+    {% for sd_mean_N_io in result.sd_mean_N_io_list %}
+
+      <tr><th scope="row">{{sd_mean_N_io}}</th></tr>    
+ 
+    {% endfor %}
+
+</tbody>
+
+</table>
+</div>
+    {% endif %}
+
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+{% endblock %}
