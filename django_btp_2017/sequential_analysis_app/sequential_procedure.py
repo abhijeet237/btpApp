@@ -143,7 +143,7 @@ def performSequentialAnalysisSimulation(input_file, budget, num_iterations, prec
 
 	#Theoritical calulation of sample value per group
  	optimum = np.zeros((total_gene_ids, 3))#optimum matrix containing both optimum sample size & respective deviation
-
+ 	inter_stage_status = []
  	#print C
  	#print sigma
  	#print sigma[0]
@@ -176,8 +176,9 @@ def performSequentialAnalysisSimulation(input_file, budget, num_iterations, prec
 				pilot_data = temp
 			else:
 				pilot_data = np.vstack((pilot_data, temp))
-			
+		stage=0	
 		while counter < total_gene_ids:#this counter shows #groups that have achieved optimum value
+	  		
 	  		for i in range(0,total_gene_ids):
 	  			if state[i]==0:
 	  				numerator = A*abs(C[i])*(np.std(pilot_data[i]))
@@ -198,8 +199,7 @@ def performSequentialAnalysisSimulation(input_file, budget, num_iterations, prec
 					#optimum[i,2]=sd(pilot_data[i,])
 					test_result_matrix[i,(current_iteration-1)] = m
 			 		sd_of_each_group[i]=np.std(pilot_data[i])
-					counter = counter+1
-									
+					counter = counter+1				
 								
 			#steps to update m & pilot_data & restart process again for non-optimized groups
 	  		m=m+1 #increamenting m
@@ -207,7 +207,13 @@ def performSequentialAnalysisSimulation(input_file, budget, num_iterations, prec
 	  		for i in range(0,total_gene_ids):#updating the pilot data according to value of m
 				if state[i]==0:
 					pilot_data[i,(m-1)] = np.random.normal(mu[i], sigma[i], 1)
-				
+			if(current_iteration == 1):	
+				#print('current_iteration:', current_iteration)	
+				#print('stage:',stage)	
+				stage = stage + 1
+				print('Stage:', stage, ' | trm : ', test_result_matrix[:,0])
+				inter_stage_status.append(test_result_matrix[:,0].tolist())		
+			
 		   
 		current_iteration = current_iteration + 1
 
@@ -236,6 +242,8 @@ def performSequentialAnalysisSimulation(input_file, budget, num_iterations, prec
 		'n_io_list' : n_io_list,
 		'mean_N_io_list' : np.round(mean_N_io_list,precision),
 		'sd_mean_N_io_list' : np.round(sd_mean_N_io_list,precision),
-		'num_iterations' : num_iterations
+		'num_iterations' : num_iterations,
+		'inter_stage_status' :  inter_stage_status,
+		'shape' : np.shape(inter_stage_status)
 
 	}
