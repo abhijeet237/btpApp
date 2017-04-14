@@ -211,7 +211,7 @@ def performSequentialAnalysisSimulation(input_file, budget, num_iterations, prec
 				#print('current_iteration:', current_iteration)	
 				#print('stage:',stage)	
 				stage = stage + 1
-				print('Stage:', stage, ' | trm : ', test_result_matrix[:,0])
+				#print('Stage:', stage, ' | trm : ', test_result_matrix[:,0])
 				inter_stage_status.append(test_result_matrix[:,0].tolist())		
 			
 		   

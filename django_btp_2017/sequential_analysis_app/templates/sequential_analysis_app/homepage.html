@@ -122,11 +122,10 @@
     </tr>
   </thead>
   <tbody>
-    
 
      {% for inter_stage_status in result.inter_stage_status %}
 
-      <tr><td>1</td>
+      <tr><td> Stage {{loop.index}}</td>
 
         {% for cell_status in inter_stage_status %}
 
@@ -148,6 +147,7 @@
   
 </table>
 <button type="submit" class="btn btn-primary">Submit</button><br>
+<a href="inter_stage_data">Clicke here to see inter stage data</a>
 </form>
 </div>
 {% endblock %}

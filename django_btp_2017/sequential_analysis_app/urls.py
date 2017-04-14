@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.homepage, name='homepage'),
     url(r'^uploads/', views.file_upload, name='file_upload'),
+    url(r'^inter_stage_data/', views.view_inter_stage_data, name='view_inter_stage_data'),
 ]
 
 if settings.DEBUG:

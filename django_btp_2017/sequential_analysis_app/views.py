@@ -7,7 +7,7 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+RESULT_OBJ = None
 # Create your views here.
 def homepage(request):
 	return render(request, 'sequential_analysis_app/homepage.html')
@@ -23,6 +23,7 @@ def file_upload(request):
         MEDIA_PATH = os.path.join(MEDIA_ROOT, input_file.name)
         result = sp.performSequentialAnalysisSimulation(MEDIA_PATH,budget,5, 2) #num_iterations=5, precicion upto 2 decimal places
         file_deleted=False
+        RESULT_OBJ = result
         try:
         	os.remove(os.path.join(settings.MEDIA_ROOT, input_file.name))
         	file_deleted=True
@@ -42,6 +43,9 @@ def file_upload(request):
         })
         
     return render(request, 'sequential_analysis_app/homepage.html')
+
+def view_inter_stage_data(request):
+    return render(request, 'sequential_analysis_app/view_inter_stage_data.html', {'result' : RESULT_OBJ})
 
 
 

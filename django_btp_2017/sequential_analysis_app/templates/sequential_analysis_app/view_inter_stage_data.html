@@ -1,0 +1,49 @@
+{% extends "sequential_analysis_app/master_template.html" %}
+{% block content %}
+<div class="container">
+
+<div class="table-responsive col-md-12">
+    <table class="table">
+  <thead class="thead-inverse">
+    <tr>
+      <th>Stage</th>
+      <th>Cell_Type_1</th>
+      <th>Cell_Type_2</th>
+      <th>Cell_Type_3</th>
+      <th>Cell_Type_4</th>
+      <th>Cell_Type_5</th>
+      <th>Cell_Type_6</th>
+      <th>Cell_Type_7</th>
+      <th>Cell_Type_8</th>
+      <th>Cell_Type_9</th>
+      <th>Cell_Type_10</th>
+    </tr>
+  </thead>
+  <tbody>
+
+     {% for inter_stage_status in result.inter_stage_status %}
+
+      <tr><td> Stage {{loop.index}}</td>
+
+        {% for cell_status in inter_stage_status %}
+
+          <td>{{cell_status}}</td>
+
+        {% endfor %}
+
+      </tr>    
+ 
+    {% endfor %}
+
+</tbody>
+
+
+
+    {% endif %}
+   
+   
+  
+</table>
+</div>
+</div>
+{% endblock %}
