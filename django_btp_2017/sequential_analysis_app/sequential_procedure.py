@@ -144,6 +144,7 @@ def performSequentialAnalysisSimulation(input_file, budget, num_iterations, prec
 	#Theoritical calulation of sample value per group
  	optimum = np.zeros((total_gene_ids, 3))#optimum matrix containing both optimum sample size & respective deviation
  	inter_stage_status = []
+ 	temporary_list=[]
  	#print C
  	#print sigma
  	#print sigma[0]
@@ -212,8 +213,11 @@ def performSequentialAnalysisSimulation(input_file, budget, num_iterations, prec
 				#print('stage:',stage)	
 				stage = stage + 1
 				#print('Stage:', stage, ' | trm : ', test_result_matrix[:,0])
-				inter_stage_status.append(test_result_matrix[:,0].tolist())		
-			
+				for cell_id in range(0,total_gene_ids):
+					#print(test_result_matrix[cell_id,0]," | ",state[cell_id,0])
+					temporary_list.append([test_result_matrix[cell_id,0],state[cell_id,0]])
+				#inter_stage_status.append([{'sample_size':test_result_matrix[:,0].tolist(),'state':state[:,0].tolist()}])		
+				inter_stage_status.append(temporary_list)
 		   
 		current_iteration = current_iteration + 1
 

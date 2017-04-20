@@ -1,5 +1,8 @@
 {% extends "sequential_analysis_app/master_template.html" %}
 {% block content %}
+<script type="text/javascript">
+  var stage = 0;
+</script>
 <div class="container">
 {% include 'sequential_analysis_app/includes/page_header.html' %}
 <p>Hey! Welcome to the website! Well, I wasn't expecting guests. Um, my name is Jishnu. If you find any anomaly in this webapp kindly report it to <a href="mailto:jishnu.jayakumar182@gmail.com">jishnu.jayakumar182@gmail.com</a>.</p>
@@ -16,7 +19,7 @@
     <p class="help-block">File uploaded at: {{ uploaded_file_url }}</p>
     <!--p class="help-block">Result : {{ result }}</p-->
     <p class="help-block">Uploaded file deleted : {{ file_deleted }}</p>
-    <h2 style="color:green;">Output</h2>
+    <h2 style="color:green;">Output <h4><span id="link"></span></h4></h2>
     <div class="table-responsive col-md-3">
     <table class="table">
   <thead class="thead-inverse">
@@ -102,9 +105,17 @@
 
   </div>
 
+  <span id="link"></span>
+  <style type="text/css">
+    
+    tr,th,td{
 
-  
-  <div class="table-responsive col-md-12">
+      text-align: center;
+
+    }
+
+  </style>
+  <div id="intermediate-stage-result" class="table-responsive col-md-12" style="display: none;">
     <table class="table">
   <thead class="thead-inverse">
     <tr>
@@ -125,17 +136,62 @@
 
      {% for inter_stage_status in result.inter_stage_status %}
 
-      <tr><td> Stage {{loop.index}}</td>
+      <tr>
+
+      <td> 
+      
+      <script type="text/javascript">
+        
+        document.write("Stage-" + (++stage));
+      </script>
+
+      </td>
 
         {% for cell_status in inter_stage_status %}
 
-          <td>{{cell_status}}</td>
+         
 
+            {# for sample_size in cell_status #}
+
+            <!--td>
+              
+              {{sample_size}}
+
+            </td-->
+
+            {# endfor #}
+
+            <script type="text/javascript">
+          
+
+
+            </script>
+
+          </td>
+
+          
+          
         {% endfor %}
+
+        
 
       </tr>    
  
     {% endfor %}
+
+    <script type="text/javascript">
+      
+    function showIntermediateStage(){
+
+      document.getElementById('intermediate-stage-result').style.display = 'block';
+
+    }      
+      
+    
+
+    document.getElementById('link').innerHTML="<a href='#intermediate-stage-result' onclick='showIntermediateStage()'>Click to see the intermediate stages</a>";
+
+    </script>
 
 </tbody>
 
@@ -146,8 +202,9 @@
    
   
 </table>
+
 <button type="submit" class="btn btn-primary">Submit</button><br>
-<a href="inter_stage_data">Clicke here to see inter stage data</a>
+
 </form>
 </div>
 {% endblock %}
