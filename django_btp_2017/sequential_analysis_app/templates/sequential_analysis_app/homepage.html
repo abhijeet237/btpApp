@@ -151,31 +151,54 @@
 
          
 
-            {# for sample_size in cell_status #}
+            
 
-            <!--td>
+            <td class="true">
               
-              {{sample_size}}
+              {{cell_status}}
 
-            </td-->
+            </td>
 
-            {# endfor #}
+            
 
             <script type="text/javascript">
           
+                var elements = document.getElementsByClassName("true");
+                var current_element;
+                var current_element_value;
+                for (var i = 0; i < elements.length; i++) {
+                    current_element = elements[i];
+                    current_element_value = Math.floor(current_element.innerText);
 
+                    if((current_element_value - 1) > 0){
+                      
+                      if((current_element_value - 1) <= (stage)){
+                      
+                        current_element.style.color="red"; 
+
+                      }
+
+                    }else{
+
+                       current_element.style.color="green"; 
+
+                    }
+
+                    current_element.className="false";
+
+                }
 
             </script>
 
-          </td>
+          
 
           
           
         {% endfor %}
 
         
-
-      </tr>    
+</tr>
+       
  
     {% endfor %}
 

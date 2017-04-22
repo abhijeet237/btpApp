@@ -30,12 +30,6 @@ def file_upload(request):
         except Exception as e:
         	print "Exception when delete "+str(os.path.join(settings.MEDIA_ROOT, input_file.name))+","+str(e)
 
-        '''try:
-        	print sp.performSequentialAnalysis(uploaded_file_url,budget)
-        except Exception, e:
-        	result = str(e)
-        '''
-
         return render(request, 'sequential_analysis_app/homepage.html', {
             'uploaded_file_url': uploaded_file_url,
             'result':result,
